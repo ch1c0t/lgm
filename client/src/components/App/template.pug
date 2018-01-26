@@ -1,1 +1,7 @@
-p Some content.
+div
+  input(v-model="link")
+  button(v-on:click="addLink")
+
+  ul
+    li(v-for="link in links")
+      a(:href="link") {{link}}
