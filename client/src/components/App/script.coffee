@@ -4,5 +4,5 @@ module.exports =
     links: []
   methods:
     addLink: ->
-      @links.push @link
+      @links.unshift @link
       @link = ""
