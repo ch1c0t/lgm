@@ -3,6 +3,8 @@ GEM
   specs:
     hobby (0.1.1)
       rack
+    hobby-json (0.0.4)
+      rack
     rack (2.0.3)
 
 PLATFORMS
@@ -10,6 +12,7 @@ PLATFORMS
 
 DEPENDENCIES
   hobby
+  hobby-json
 
 BUNDLED WITH
    1.16.1

@@ -1,3 +1,5 @@
+axios = require 'axios'
+
 module.exports =
   data: ->
     link: ""
@@ -6,3 +8,6 @@ module.exports =
     addLink: ->
       @links.unshift @link
       @link = ""
+  created: ->
+    response = await axios.get '/api/links'
+    @links = response.data

@@ -1,4 +1,14 @@
 require 'hobby'
+require 'hobby/json'
+
+class API
+  include Hobby
+  include JSON
+
+  get '/links' do
+    ['/main.js', '/another.html']
+  end
+end
 
 class App
   include Hobby
@@ -6,6 +16,8 @@ class App
   def initialize path
     @path = path
   end
+
+  map '/api', API.new
 
   get do
     IO.read "#{@path}/index.html"
