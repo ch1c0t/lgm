@@ -1,12 +1,24 @@
 require 'hobby'
 require 'hobby/json'
 
+require_relative 'link'
+LINKS = [Link.new('/main.js'), Link.new('/another.html')]
+
 class API
   include Hobby
   include JSON
 
   get '/links' do
-    ['/main.js', '/another.html']
+    LINKS
+  end
+
+  post '/links' do
+    link = Link.new json['link']
+
+    if link.valid?
+      LINKS << link
+      link
+    end
   end
 end
 
