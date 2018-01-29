@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    hobby (0.1.1)
+      rack
+    rack (2.0.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  hobby
+
+BUNDLED WITH
+   1.16.1
