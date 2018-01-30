@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'puma'
+require_relative '../api/app'
+
+server = Puma::Server.new App.new
+server.add_tcp_listener '127.0.0.1:8000'
+server.run
+sleep
