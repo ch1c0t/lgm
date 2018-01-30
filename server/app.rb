@@ -22,6 +22,10 @@ class API
       response.status = 422
     end
   end
+
+  get '/links/amount' do
+    LINKS.amount
+  end
 end
 
 class App

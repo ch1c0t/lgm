@@ -21,4 +21,8 @@ module LINKS
   def include? link
     R.sismember 'links_set', link
   end
+
+  def amount
+    R.scard 'links_set'
+  end
 end
