@@ -1,12 +1,8 @@
 require 'hobby'
 require 'hobby/json'
 
-require 'redis'
-require_relative 'constants'
-R = Redis.new path: LGM_DIR
-
 require_relative 'link'
-LINKS = [Link.new('/main.js'), Link.new('/another.html')]
+require_relative 'links'
 
 class API
   include Hobby
@@ -19,8 +15,8 @@ class API
   post '/links' do
     link = Link.new json['link']
 
-    if link.valid?
-      LINKS << link
+    if link.valid? && ( not LINKS.include? link )
+      LINKS.add link
       link
     else
       response.status = 422
