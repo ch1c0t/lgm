@@ -5,7 +5,7 @@ require 'fileutils'
 FileUtils.mkdir_p LGM_DIR
 
 Thread.new do
-  `redis-server --unixsocket #{LGM_DIR}/redis.sock --port 0 --dir #{LGM_DIR}`
+  `redis-server --unixsocket #{LGM_DIR}/redis.sock --port 0 --dir #{LGM_DIR} --appendonly yes`
 end
 at_exit { R.shutdown }
 
