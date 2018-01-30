@@ -1,6 +1,10 @@
 require 'hobby'
 require 'hobby/json'
 
+require 'redis'
+require_relative 'constants'
+R = Redis.new path: LGM_DIR
+
 require_relative 'link'
 LINKS = [Link.new('/main.js'), Link.new('/another.html')]
 
