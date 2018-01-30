@@ -18,6 +18,8 @@ class API
     if link.valid?
       LINKS << link
       link
+    else
+      response.status = 422
     end
   end
 end
