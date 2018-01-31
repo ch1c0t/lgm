@@ -4,14 +4,11 @@ require_relative '../server/constants'
 require 'fileutils'
 FileUtils.mkdir_p LGM_DIR
 
-Thread.new do
-  `redis-server --unixsocket #{LGM_DIR}/redis.sock --port 0 --dir #{LGM_DIR} --appendonly yes`
-end
+redis_pid = spawn "redis-server --unixsocket #{LGM_DIR}/redis.sock --port 0 --dir #{LGM_DIR} --appendonly yes > /dev/null"
+at_exit { `kill #{redis_pid}` }
 
 require 'puma'
 require_relative '../server/app'
-at_exit { R.shutdown }
-
 
 root = File.dirname __dir__
 server = Puma::Server.new App.new "#{root}/static/dist"
