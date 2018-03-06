@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
 require 'puma'
-require_relative '../server/app'
+require_relative '../server/lgm'
 
 root = File.dirname __dir__
-server = Puma::Server.new App.new
-puts "LGM version: #{LGM::Version}."
+server = Puma::Server.new LGM.new
+puts "LGM version: #{LGM::VERSION}."
 puts 'Starting LGM at 127.0.0.1:8000.'
 server.add_tcp_listener '127.0.0.1', 8000
 server.run

@@ -1,12 +1,12 @@
 require 'rake'
-require_relative 'server/app'
+require_relative 'server/version'
 
 FileList = Rake::FileList
 
 Gem::Specification.new do |g|
   g.name    = 'lgm'
   g.files   = (FileList['server/**/*'] + FileList['static/dist/*'] + ['bin/lgm'])
-  g.version = LGM::Version
+  g.version = LGM::VERSION
   g.summary = 'CRM | Lead Gathering Machine'
   g.authors = ['Anatoly Chernow']
 
