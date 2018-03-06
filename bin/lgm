@@ -1,18 +1,12 @@
 #!/usr/bin/env ruby
 
-require_relative '../server/constants'
-require 'fileutils'
-FileUtils.mkdir_p LGM_DIR
-
-redis_pid = spawn "redis-server --unixsocket #{LGM_DIR}/redis.sock --port 0 --dir #{LGM_DIR} --appendonly yes > /dev/null"
-at_exit { `kill #{redis_pid}` }
-
 require 'puma'
 require_relative '../server/app'
 
 root = File.dirname __dir__
-server = Puma::Server.new App.new "#{root}/static/dist"
-puts 'Starting lgm at localhost:8000.'
+server = Puma::Server.new App.new
+puts "LGM version: #{LGM::Version}."
+puts 'Starting LGM at 127.0.0.1:8000.'
 server.add_tcp_listener '127.0.0.1', 8000
 server.run
 sleep

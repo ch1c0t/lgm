@@ -1,13 +1,13 @@
 require 'redis'
-require_relative 'constants'
-R = Redis.new path: "#{LGM_DIR}/redis.sock"
 
-module LINKS
-  extend self
+class LINKS
+  def initialize dir
+    @db = Redis.new path: "#{dir}/redis.sock"
+  end
 
   def add link
-    R.lpush 'links_list', link
-    R.sadd 'links_set', link
+    @db.lpush 'links_list', link
+    @db.sadd 'links_set', link
   end
 
   def to_json
@@ -15,14 +15,14 @@ module LINKS
   end
 
   def to_a
-    R.lrange 'links_list', 0, -1
+    @db.lrange 'links_list', 0, -1
   end
 
   def include? link
-    R.sismember 'links_set', link
+    @db.sismember 'links_set', link
   end
 
   def amount
-    R.scard 'links_set'
+    @db.scard 'links_set'
   end
 end
