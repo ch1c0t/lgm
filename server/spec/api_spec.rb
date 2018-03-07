@@ -5,7 +5,7 @@ require 'excon'
 require 'puma'
 
 describe do
-  before do
+  before :all do
     test_dir = "/tmp/lgm_test/#{$$}"
     socket = "#{test_dir}/http.sock"
     @pid = fork do
@@ -30,12 +30,18 @@ describe do
     end
   end
 
-  it do
+  it "returns links' amount" do
     response = @excon.get path: '/links/amount'
     assert { response.body == '20' }
   end
 
-  after do
+  it 'returns all the links' do
+    response = @excon.get path: '/links'
+    links = JSON.parse response.body
+    assert { links == @links.reverse }
+  end
+
+  after :all do
     `kill #{@pid}`
   end
 end
