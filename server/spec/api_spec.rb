@@ -41,6 +41,15 @@ describe do
     assert { links == @links.reverse }
   end
 
+  it 'returns a subset of the links' do
+    response = @excon.get path: '/links',
+      query: { from: 2, to: 8 }
+    actual_links = JSON.parse response.body
+    expected_links = @links.reverse[2..8]
+
+    assert { actual_links == expected_links }
+  end
+
   after :all do
     `kill #{@pid}`
   end

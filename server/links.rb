@@ -11,12 +11,8 @@ class LGM
       @db.sadd 'links_set', link
     end
 
-    def to_json
-      to_a.to_json
-    end
-
-    def to_a
-      @db.lrange 'links_list', 0, -1
+    def between from = 0, to = -1
+      @db.lrange 'links_list', from, to
     end
 
     def include? link

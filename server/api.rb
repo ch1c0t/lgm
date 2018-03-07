@@ -25,7 +25,10 @@ class LGM
     end
 
     get '/links' do
-      @links
+      from, to = request.params.values_at 'from', 'to'
+      from ||= 0
+      to ||= -1
+      @links.between from, to
     end
 
     post '/links' do
