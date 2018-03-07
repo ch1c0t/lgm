@@ -16,11 +16,23 @@ describe do
     end
     sleep 1
     @excon = Excon.new 'unix:///', socket: socket
+    seed_links
+  end
+
+  def seed_links
+    letters = ('a'..'z').to_a
+    @links = 20.times.map { "https://#{letters.sample(16).join}.org" }.uniq
+    assert { @links.size == 20 }
+
+    @links.each do |link|
+      @excon.post path: '/links',
+        body: { link: link }.to_json
+    end
   end
 
   it do
     response = @excon.get path: '/links/amount'
-    assert { response.body == '0' }
+    assert { response.body == '20' }
   end
 
   after do
