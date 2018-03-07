@@ -16,4 +16,5 @@ Gem::Specification.new do |g|
   g.add_dependency 'hobby-json'
   g.add_dependency 'redis'
   g.add_dependency 'puma'
+  g.add_dependency 'suppress_output'
 end

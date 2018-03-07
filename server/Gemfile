@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'hobby'
 gem 'hobby-json'
 gem 'redis'
+gem 'suppress_output'
 
 gem 'rspec'
 gem 'rspec-power_assert'

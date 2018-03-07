@@ -1,5 +1,6 @@
 require 'fileutils'
 
+require 'suppress_output'
 require 'hobby'
 require 'hobby/json'
 
@@ -17,8 +18,9 @@ class LGM
 
     def initialize_data_store_at dir
       FileUtils.mkdir_p dir
-      redis_pid = spawn "redis-server --unixsocket #{dir}/redis.sock --port 0 --dir #{dir} --appendonly yes > /dev/null"
-      at_exit { `kill #{redis_pid}` }
+      redis_pid = suppress_output do
+        spawn "redis-server --unixsocket #{dir}/redis.sock --port 0 --dir #{dir} --appendonly yes"
+      end; at_exit { `kill #{redis_pid}` }
       @links = LINKS.new dir
     end
 
