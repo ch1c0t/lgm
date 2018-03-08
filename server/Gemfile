@@ -4,6 +4,8 @@ gem 'hobby'
 gem 'hobby-json'
 gem 'redis'
 gem 'suppress_output'
+gem 'slim'
+gem 'sass'
 
 gem 'rspec'
 gem 'rspec-power_assert'

@@ -17,4 +17,6 @@ Gem::Specification.new do |g|
   g.add_dependency 'redis'
   g.add_dependency 'puma'
   g.add_dependency 'suppress_output'
+  g.add_dependency 'slim'
+  g.add_dependency 'sass'
 end
