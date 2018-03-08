@@ -3,13 +3,13 @@
   "devDependencies": {
     "axios": "^0.17.1",
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "babel-loader": "^7.1.4",
     "coffee-loader": "^0.9.0",
-    "coffeescript": "^2.1.1",
+    "coffeescript": "^2.2.2",
     "css-loader": "^0.28.10",
     "vue": "^2.5.13",
-    "vue-loader": "^13.7.0",
+    "vue-loader": "^13.7.1",
     "vue-template-compiler": "^2.5.13",
-    "webpack": "^3.10.0"
+    "webpack": "^3.11.0"
   }
 }
